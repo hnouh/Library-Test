@@ -28,11 +28,6 @@ function Signup() {
     imageRef.current.click();
   };
 
-  const handleChange = (event) => {
-    const fileObject = event.target.files[0];
-    if (!fileObject) return;
-   };
-
   const uploadImage = (e) => {
     e.preventDefault();
     const formData = new FormData();
