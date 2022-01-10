@@ -13,6 +13,10 @@ body{
   pointer-events: none;
 }
  
+.test{
+  color:red;
+}
+
 .test1{
   background-color:firebrick;
 }

@@ -29,7 +29,7 @@ function Authors() {
     axios.get("/allAuthors").then((res) => {
       setAuthors(res.data);
     });
-  }, []);
+  }, [storedToken]);
 
   // function addAuthor(e) {
   //   e.preventDefault();

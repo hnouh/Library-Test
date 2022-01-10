@@ -1,10 +1,11 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState ,useRef} from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import jwt from "jwt-decode";
 import FormLabel from "react-bootstrap/esm/FormLabel";
 import { Image } from "cloudinary-react";
+import { AiFillEdit } from 'react-icons/ai';
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -16,15 +17,21 @@ function Signup() {
   const [imageVersion, setImageVersion] = useState();
   const [imageFormat, setImageFormat] = useState("");
   const [imageAfterUpload, setImageAfterUpload] = useState("");
-
-  // const [bookImage, setBookImage] = useState("");
-  // const [title, setBookTitle] = useState("");
-  // const [pages, setPages] = useState();
-
+  const imageRef = useRef();
+ 
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
   let navigate = useNavigate();
+
+  const showOpenFileDialog = () => {
+    imageRef.current.click();
+  };
+
+  const handleChange = (event) => {
+    const fileObject = event.target.files[0];
+    if (!fileObject) return;
+   };
 
   const uploadImage = (e) => {
     e.preventDefault();
@@ -81,10 +88,31 @@ function Signup() {
         ></Form.Control>
         {/* <Form.Control placeholder="author image" onChange={(e) => setAuthImage(e.target.value)}></Form.Control> */}
         <FormLabel>author image</FormLabel>
-        <Form.Control
+        {/* <Form.Control
           onChange={(e) => setAuthImage(e.target.files[0])}
           type="file"
-        ></Form.Control>
+        ></Form.Control> */}
+        <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          margin: "20px 10px"
+        }}
+      >
+        <div > 
+              <AiFillEdit
+                onClick={showOpenFileDialog}
+              > 
+              </AiFillEdit>  
+          <input
+            ref={imageRef}
+            type="file"
+            style={{ display: "none" }}
+            accept="image/*"
+             onChange={(e) => setAuthImage(e.target.files[0])}
+          />
+        </div>
+      </div> 
         <button className="btn btn-success" onClick={(e) => uploadImage(e)}>Upload image</button>
 
         <Image
@@ -107,10 +135,7 @@ function Signup() {
           required
           onChange={(e) => setPassword(e.target.value)}
         ></Form.Control>
-        <div className="password error">{passwordError}</div>
-        {/* <input placeholder="book title" onChange={(e) => setBookTitle(e.target.value)}></input>
-        <input placeholder="book pages" onChange={(e) => setPages(e.target.value)}></input>
-        <input placeholder="book image" onChange={(e) => setBookImage(e.target.value)}></input> */}
+        <div className="password error">{passwordError}</div> 
         <button className="btn btn-success" onClick={(e) => signupAuthor(e)}>
           Sign up
         </button>

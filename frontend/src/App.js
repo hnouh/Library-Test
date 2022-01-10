@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Authors from "./Authors";
 import AuthDetails from "./AuthDetails";
-import BookDetails from "./BookDetails";
+import BookDetails from "./BookDetails"; 
 import Signup from "./Signup";
 import Signin from "./Signin";
 import Navigation from "./Navigation";

@@ -5,10 +5,8 @@ import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import AuthContext from "./store/auth-context";
-import { useContext } from "react";
-import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
-import Dropdown from "react-bootstrap/Dropdown";
+import { useState, useEffect ,useContext} from "react";
+import { useTranslation } from "react-i18next"; 
 import i18n from "i18next";
 import Flag from "react-world-flags";
 import classNames from "classnames";
@@ -52,11 +50,7 @@ function Navigation() {
     ctx.setIsLogged(false);
     navigate("/");
   }
-
-  // function handleChange(e) {
-  //   i18n.changeLanguage(e.target.value);
-  // }
-
+ 
   useEffect(() => {
     // console.log('Setting page stuff')
     document.body.dir = currentLanguage.dir || 'ltr'
@@ -87,13 +81,7 @@ function Navigation() {
               </>
             )}
           </Nav>
-          <NavDropdown title={<GlobeIcon />}>
-          {/* <Dropdown.Toggle id="dropdown-basic"> */}            
-          {/* </Dropdown.Toggle>  */}
-          {/* <Dropdown.Menu> */}
-            {/* <Dropdown.Item disabled>
-              <span className="dropdown-item-text">{t("Select_language")}</span>
-            </Dropdown.Item> */}
+          <NavDropdown title={<GlobeIcon />}> 
             {languages.map(({ code, name, country_code }) => (
               <NavDropdown.Item key={country_code}>
                 <a
@@ -119,19 +107,8 @@ function Navigation() {
                 </a>
               </NavDropdown.Item>
             ))}
-          {/* </Dropdown.Menu> */}
-          </NavDropdown>
-        </Navbar.Collapse>
-        {/* <select onChange={(e) => handleChange(e)}>
-          <GlobeIcon />
-          <option selected value="" disabled>
-            {t("Select_language")}
-          </option>
-          <option value="ar">العربية</option>
-          <option value="en">english</option>
-        </select> */}
-
-        
+           </NavDropdown>
+        </Navbar.Collapse> 
       </Container>
     </Navbar>
   );

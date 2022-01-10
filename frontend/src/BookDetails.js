@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
-import Loader from "react-loader-spinner";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
+import Loader from "react-loader-spinner"; 
+import { FaHeart,FaRegHeart } from 'react-icons/fa';
+import "./App.css";
 
 export default function BookDetails() {
   const [book, setBook] = useState();
   const { authorId, bookId } = useParams();
   const [loading, setLoading] = useState(true);
+  const [heart, setHeart] = useState(true);
 
   console.log(authorId)
   console.log(bookId)
@@ -41,6 +41,10 @@ export default function BookDetails() {
       <img src={book.bookImage} />
       <h3>pages: {book.pages}</h3>
       <h5>price: {book.price}</h5>
+      
+      {heart?<FaHeart className="test" onClick={()=>{setHeart(!heart)}}></FaHeart>
+      :<FaRegHeart onClick={()=>{setHeart(!heart)}} ></FaRegHeart>}
+
     </div>
   );
 }
